@@ -4,47 +4,45 @@ namespace RomanNumeralsApp
 {
     public static class RomanNumeral
     {
-
         public static int ConvertRomanNumeral(string romanNumeral)
         {
             if (romanNumeral is null)
             {
-                throw new NullReferenceException();
+                throw new NullReferenceException("Enter a non-null roman numeral");
             }
-            else if (romanNumeral == "I")
+            if (romanNumeral.Length >= 2)
             {
-                return 1;
+                switch (romanNumeral[..2])
+                {
+                    case "IV":
+                        return 4;
+                    case "IX":
+                        return 9;
+                    case "XL":
+                        return 40;
+                    case "XC":
+                        return 90;
+                    case "CD":
+                        return 400;
+                    case "CM":
+                        return 900;
+                }
             }
-            else if (romanNumeral == "V")
+            if (romanNumeral.Length >= 1)
             {
-                return 5;
+                return romanNumeral[..1] switch
+                {
+                    "I" => 1,
+                    "V" => 5,
+                    "X" => 10,
+                    "L" => 50,
+                    "C" => 100,
+                    "D" => 500,
+                    "M" => 1000,
+                };
             }
-            else if (romanNumeral == "X")
-            {
-                return 10;
-            }
-            else if (romanNumeral == "L")
-            {
-                return 50;
-            }
-            else if (romanNumeral == "C")
-            {
-                return 100;
-            }
-            else if (romanNumeral == "D")
-            {
-                return 500;
-            }
-            else if (romanNumeral == "M")
-            {
-                return 1000;
-            }
-            else if( romanNumeral == ""){
-                return 0;
-            }
-            else    
-                throw new System.Exception();
-
+            Console.Out.WriteLine("Return 0");
+            return 0;
         }
 
         public static void Main()
