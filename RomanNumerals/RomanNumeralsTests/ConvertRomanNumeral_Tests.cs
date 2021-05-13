@@ -58,7 +58,5 @@ namespace RomanNumeralsTests
             int number = RomanNumeral.ConvertRomanNumeral(' ');
             number.Should().Be(0);
         }
-
-       
     }
 }
