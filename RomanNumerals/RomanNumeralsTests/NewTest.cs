@@ -22,12 +22,15 @@ namespace RomanNumeralsTests
         [Fact]
         public void Test()
         {
-            int number = RomanNumeral.Convert("IV");
+            int number = RomanNumeral.Convert("V");
 
-            number.Should().Be(4);
-
-
+            number.Should().Be(5);
         }
-        
+
+        // [Fact]
+        // public void Test2()
+        // {
+        //     
+        // }
     }
 }
