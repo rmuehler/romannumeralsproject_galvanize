@@ -27,7 +27,7 @@ namespace RomanNumeralsTests
         {
             Action action = () => RomanNumeral.ConvertRomanNumeral('\0');
 
-            action.Should().Throw<Exception>();
+            action.Should().Throw<ArgumentException>();
         }
 
 
@@ -36,7 +36,7 @@ namespace RomanNumeralsTests
         {
             Action action = () => RomanNumeral.ConvertRomanNumeral('-');
 
-            action.Should().Throw<Exception>();
+            action.Should().Throw<ArgumentException>();
         }
 
 
