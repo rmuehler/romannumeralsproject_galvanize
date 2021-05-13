@@ -26,37 +26,39 @@ namespace RomanNumeralsTests
         public void Should_ThrowAnExceptionIfNullIsPassed()
         {
             Action action = () => RomanNumeral.ConvertRomanNumeral('\0');
-        
-            action.Should().Throw<NullReferenceException>();
+
+            action.Should().Throw<Exception>();
         }
 
-        // [Fact]
-        // public void Should_ValidatedIfStringPassedIsEmpty()
-        // {
-        //     int number = RomanNumeral.ConvertRomanNumeral('\0');
-        //     number.Should().Be(0);
-        // }
 
-        // [Theory]
-        // [InlineData("IV", 4)]
-        // [InlineData("IX", 9)]
-        // [InlineData("XL", 40)]
-        // [InlineData("XC", 90)]
-        // [InlineData("CD", 400)]
-        // [InlineData("CM", 900)]
-        // public void Should_ReturnValueIfMultipleCharacterRomanNumeralPassed(string romanNumeral, int value)
-        // {
-        //     int number = RomanNumeral.ConvertRomanNumeral(romanNumeral);
-        //
-        //     number.Should().Be(value);
-        // }
-        //
-        // [Fact]
-        // public void Should_ReturnValueIfRomanNumeral3_OrMoreCharacter()
-        // {
-        //     int number = RomanNumeral.ConvertRomanNumeral("MMVI");
-        //
-        //     number.Should().Be(2006);
-        // }
+        [Fact]
+        public void ShouldThrowExceptionIfNegativeCharacter()
+        {
+            Action action = () => RomanNumeral.ConvertRomanNumeral('-');
+
+            action.Should().Throw<Exception>();
+        }
+
+
+        [Theory]
+        [InlineData('v', 5)]
+        [InlineData('x', 10)]
+        [InlineData('c', 100)]
+        public void Should_AcceptLowerCaseLettersAsValidRomanNumerals(char romanNumeral, int value)
+        {
+            int number = RomanNumeral.ConvertRomanNumeral(romanNumeral);
+
+            number.Should().Be(value);
+        }
+
+
+        [Fact]
+        public void Should_ValidatedIfStringPassedIsEmpty()
+        {
+            int number = RomanNumeral.ConvertRomanNumeral(' ');
+            number.Should().Be(0);
+        }
+
+       
     }
 }
