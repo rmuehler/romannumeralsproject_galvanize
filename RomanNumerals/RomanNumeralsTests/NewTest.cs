@@ -7,8 +7,6 @@ namespace RomanNumeralsTests
 {
     public class NewTest
     {
-
-
         [Theory]
         [InlineData("IV", 4)]
         [InlineData("IX", 9)]
@@ -19,10 +17,9 @@ namespace RomanNumeralsTests
         public void Should_SubtractIfSecondCharacterIsGreater(string romanNumeral, int value)
         {
             int number = RomanNumeral.Convert(romanNumeral);
-        
+
             number.Should().Be(value);
         }
-
 
 
         [Fact]
@@ -33,8 +30,7 @@ namespace RomanNumeralsTests
             number.Should().Be(4);
         }
 
-        
-        
+
         [Fact]
         public void Should_ThrowAnExceptionIfNullIsPassed()
         {
@@ -43,25 +39,22 @@ namespace RomanNumeralsTests
             action.Should().Throw<NullReferenceException>();
         }
 
-        // [Fact]
-        // public void test()
-        // {
-        //
-        //    // Action action = () => RomanNumeral.Convert("CDLXXXMMMDCXLVIII");
-        //     int number = RomanNumeral.Convert("CDLXXXMMMDCXLVIII");
-        //
-        //    // action.Should().Throw<OverflowException>();
-        //     number.Should().Be(2006);
-        //
-        // }
-        
-        [Fact]
-        public void Should_ThrowAnExceptionIfMaxRomanNumeralIsHit()
+        [Theory]
+        [InlineData("MMMM")]
+        [InlineData("MMMMDD")]
+        public void Should_ThrowAnExceptionIfMaxRomanNumeralIsHit(string romanNumeral)
         {
-            Action action = () => RomanNumeral.Convert("MMMM");
+            Action action = () => RomanNumeral.Convert(romanNumeral);
             action.Should().Throw<ArgumentOutOfRangeException>();
-
         }
 
+        [Theory]
+        [InlineData("IIX")]
+        [InlineData("CDLXXXMMMDCXLVIII")]
+        public void Should_ThrowAnExceptionIfMoreThanOneLowerNumberBeforeHigherNumber(string romanNumeral)
+        {
+            Action action = () => RomanNumeral.Convert(romanNumeral);
+            action.Should().Throw<ArgumentException>();
+        }
     }
 }
