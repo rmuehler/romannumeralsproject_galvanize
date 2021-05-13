@@ -20,7 +20,7 @@ namespace RomanNumeralsTests
         // }
 
         [Fact]
-        public void Test()
+        public void Should_ConvertVTo5()
         {
             int number = RomanNumeral.Convert("V");
 
